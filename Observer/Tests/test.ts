@@ -4,18 +4,24 @@ import { CurrentConditionsDisplay } from '../CurrentConditionsDisplay';
 import { Observer } from '../Observer';
 import { ForecastDisplay } from '../ForecastDisplay';
 import { StatisticsDisplay } from '../StatisticsDisplay';
+import { ConcreteSubject } from '../ConcreteSubject';
+import { ConcreteObserver } from '../ConcreteObserver';
 
 // Creating mock
 let mockedWeatherData:WeatherData = mock(WeatherData);
 let mockedConditions:CurrentConditionsDisplay = mock(CurrentConditionsDisplay);
 let mockedForecast:ForecastDisplay = mock(ForecastDisplay);
 let mockedStatistics:StatisticsDisplay = mock(StatisticsDisplay);
+let mockedSubject:ConcreteSubject = mock(ConcreteSubject);
+let mockedObserver:ConcreteObserver = mock(ConcreteObserver);
 
 // Getting instance from mock
 let WeatherDataInstance:WeatherData = instance(mockedWeatherData);
 let CurrentConditionsInstance:CurrentConditionsDisplay = instance(mockedConditions);
 let ForecastInstance:ForecastDisplay = instance(mockedForecast);
 let StatisticsInstance:StatisticsDisplay = instance(mockedStatistics);
+let SubjectInstance:ConcreteSubject = instance(mockedSubject);
+let ObserverInstance:ConcreteObserver = instance(mockedObserver);
 
 WeatherDataInstance.setMeasurements(13, 25, 3);
 verify(mockedWeatherData.setMeasurements(13, 25, 3)).called();
@@ -29,18 +35,22 @@ verify(mockedForecast.update(33, 2, 1)).called();
 StatisticsInstance.update(84, 65, 6);
 verify(mockedStatistics.update(84, 65, 6)).called();
 
-// TODO: get the mock interface working:
+// Concrete Observer and Concrete Subject
 
-// Observer is an interface, so set mock function generic type instead of passing type to mock
-// let mockedObserver:Observer = mock<Observer>();
-// const newObserver:Observer = instance(mockedObserver);
+ObserverInstance.update(1,1,1);
+verify(mockedObserver.update(1,1,1)).called();
 
-// example from docs:
-// let mockedFoo:Foo = mock<FooInterface>(); // instead of mock(FooInterface)
-// const foo: SampleGeneric<FooInterface> = instance(mockedFoo);
+SubjectInstance.registerObserver(ObserverInstance);
+verify(mockedSubject.registerObserver(ObserverInstance)).called();
 
-// WeatherDataInstance.registerObserver(newObserver);
-// verify(WeatherDataInstance.registerObserver(newObserver)).called();
+SubjectInstance.setState(24, 46, 98);
+verify(mockedSubject.setState(24, 46, 98)).called();
 
-// WeatherDataInstance.removeObserver(newObserver);
-// verify(WeatherDataInstance.removeObserver(newObserver)).called();
+SubjectInstance.notifyObservers();
+verify(mockedSubject.notifyObservers()).called();
+
+SubjectInstance.removeObserver(ObserverInstance);
+verify(mockedSubject.removeObserver(ObserverInstance)).called();
+
+SubjectInstance.getState();
+verify(mockedSubject.getState()).called();
