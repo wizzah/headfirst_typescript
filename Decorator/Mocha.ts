@@ -1,11 +1,10 @@
 import { CondimentDecorator } from "./CondimentDecorator";
 import { Beverage } from "./Beverage";
 
-export class Mocha extends CondimentDecorator {
+export class Mocha implements CondimentDecorator {
     public beverage: Beverage;
 
     constructor(beverage: Beverage) {
-        super();
         this.beverage = beverage;
     }
 

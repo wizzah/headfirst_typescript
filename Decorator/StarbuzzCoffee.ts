@@ -22,3 +22,5 @@ export class StarbuzzCoffee {
         console.log(this.beverage3.getDescription() + " $" + this.beverage3.cost());
     }
 }
+
+let test = new StarbuzzCoffee().main();

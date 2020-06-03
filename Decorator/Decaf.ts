@@ -1,9 +1,9 @@
 import { Beverage } from "./Beverage";
 
-export class Decaf extends Beverage {
-    constructor() {
-        super();
-        this.description = "Decaf Coffee";
+export class Decaf implements Beverage {
+
+    getDescription(): string {
+        return "Decaf Coffee";
     }
 
     cost(): number {

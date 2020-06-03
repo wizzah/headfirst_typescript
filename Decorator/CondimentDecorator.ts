@@ -1,5 +1,6 @@
 import { Beverage } from "./Beverage";
 
-export abstract class CondimentDecorator extends Beverage {
-    public abstract getDescription(): string
+export abstract class CondimentDecorator implements Beverage {
+    public abstract getDescription(): string;
+    public abstract cost(): number;
 }
