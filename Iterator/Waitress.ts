@@ -1,6 +1,7 @@
 import { PancakeHouseMenu } from "./PancakeHouseMenu";
 import { MenuItem } from './MenuItem';
 import { DinerMenu } from "./DinerMenu";
+import { Menu } from "./Menu";
 
 export class Waitress {
     pancakeHouseMenu: PancakeHouseMenu;
@@ -12,23 +13,19 @@ export class Waitress {
     }
 
     printMenu(): void {
-        const pancakeIterator: Iterator<MenuItem> = this.pancakeHouseMenu.createIterator();
-        const dinerIterator: Iterator<MenuItem> = this.dinerMenu.createIterator();
-
         console.log('MENU --- BREAKFAST');
-        this.printPrintMenu(pancakeIterator);
+        this.printPrintMenu(this.pancakeHouseMenu);
         console.log('\nLUNCH');
-        this.printPrintMenu(dinerIterator);
+        this.printPrintMenu(this.dinerMenu);
     }
 
     // "Function overloading with different number of parameters and types with same name is not supported."
     // So this is renamed :)
-    printPrintMenu(iterator): void {
-        while (iterator.hasNext()) {
-            const menuItem: IteratorResult<MenuItem> = iterator.next();
-            console.log(menuItem.value.getName() + ", ");
-            console.log(menuItem.value.getPrice() + " -- ");
-            console.log(menuItem.value.getDescription());
+    printPrintMenu(iterable: Iterable<MenuItem>): void {
+        for (let item of iterable) {
+            console.log(item.getName() + ", ");
+            console.log(item.getPrice() + " -- ");
+            console.log(item.getDescription());
         }
     }
 }

@@ -17,4 +17,16 @@ export class DinerMenuIterator implements Iterator<MenuItem> {
         this.position++;
         return { done: !this.hasNext(), value: menuItem };
     }
+
+    remove(): void {
+        if (this.position <= 0) {
+            throw new Error("You can't remove an item until you've done at least one next()");
+        }
+        if (this.items[this.position - 1] != null) {
+            for (var i = this.position - 1; i < (this.items.length - 1); i++) {
+                this.items[i] = this.items[i+1];
+            }
+            this.items[this.items.length - 1] = null;
+        }
+    }
 }

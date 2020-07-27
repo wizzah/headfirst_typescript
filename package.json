@@ -1,0 +1,24 @@
+{
+  "name": "headfirst",
+  "version": "1.0.0",
+  "description": "Converting the Headfirst into Design Patterns book into Typescript",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wizzah/headfirst_typescript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wizzah/headfirst_typescript/issues"
+  },
+  "homepage": "https://github.com/wizzah/headfirst_typescript#readme",
+  "dependencies": {
+    "@types/node": "^12.7.4",
+    "ts-mockito": "^2.6.1",
+    "typescript": "^3.9.7"
+  }
+}

@@ -25,8 +25,8 @@ export class DinerMenu {
             this.numberOfItems = this.numberOfItems + 1;
         }
     }
-
-    createIterator(): Iterator<MenuItem> {
+    
+    [Symbol.iterator](): Iterator<MenuItem> {
         return new DinerMenuIterator(this.menuItems);
     }
 }

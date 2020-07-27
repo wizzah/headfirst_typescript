@@ -17,7 +17,7 @@ export class PancakeHouseMenu {
         this.menuItems.push(menuItem);
     }
 
-    createIterator(): Iterator<MenuItem> {
+    [Symbol.iterator](): Iterator<MenuItem> {
         return new PancakeHouseIterator(this.menuItems);
     }
 }
