@@ -28,7 +28,6 @@ export class Waitress {
     // So this is renamed :)
     printPrintMenu(iterable: Iterable<MenuItem>): void {
         for (let item of iterable) {
-            console.log('test', item);
             console.log(item.getName() + ", ");
             console.log(item.getPrice() + " -- ");
             console.log(item.getDescription());
