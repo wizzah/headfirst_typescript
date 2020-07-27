@@ -26,7 +26,7 @@ export class DinerMenuIterator implements Iterator<MenuItem> {
             for (var i = this.position - 1; i < (this.items.length - 1); i++) {
                 this.items[i] = this.items[i+1];
             }
-            this.items[this.items.length - 1] = null;
+            this.items.splice(this.items.length - 1, 1);
         }
     }
 }

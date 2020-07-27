@@ -1,8 +1,7 @@
 import { MenuItem } from './MenuItem';
-import { Menu } from './Menu';
 import { CafeMenuIterator } from './CafeMenuIterator';
 
-export class CafeMenu implements Iterable<[string, MenuItem]> {
+export class CafeMenu implements Iterable<MenuItem> {
     menuItems: Map<string, MenuItem> = new Map<string, MenuItem>();
 
     constructor() {
@@ -20,7 +19,7 @@ export class CafeMenu implements Iterable<[string, MenuItem]> {
         return this.menuItems;
     }
 
-    [Symbol.iterator](): Iterator<[string, MenuItem]> {
+    [Symbol.iterator](): Iterator<MenuItem> {
         return new CafeMenuIterator(this.menuItems);
     }
 }

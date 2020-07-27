@@ -1,22 +1,24 @@
 import { MenuItem } from './MenuItem';
 
-export class CafeMenuIterator implements Iterator<[string, MenuItem]> {
-    items: Map<string, MenuItem>;
+export class CafeMenuIterator implements Iterator<MenuItem> {
+    items: IterableIterator<[string, MenuItem]>;
+    length: number;
     position: number = 0;
 
     constructor(items: Map<string, MenuItem>) {
-        this.items = items;
+        this.length = items.size;
+        this.items = items.entries();
     }
 
-    hasNext(): boolean {
-        return (this.position >= this.items.size || this.items.keys()[this.position] === null) ? false : true;
-    }
-
-    next(): IteratorResult<[string, MenuItem]> {
+    next(): IteratorResult<MenuItem> {
         // get index of the map keys
-        const menuItem: string = this.items.keys()[this.position];
-        const menuItemData = this.items.get(menuItem);
+        const value = this.items.next().value;
         this.position++;
-        return { done: !this.hasNext(), value: [menuItem, menuItemData] };
+
+        if (this.length >= this.position) {
+            return { done: undefined, value: value[1] };
+        } else {
+            return { done: true, value: undefined };
+        }
     }
 }
